@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "Z3G4Bp+z1cxYm/FJu1OHmZQGspyV+tU5A1dbK2kN1swxoW1v2vkta3fXITszo2u1sJZXG8MS4hMTOwzdyYlcog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\maxim\\source\\repos\\PCPW\\PCPW\\PCPW.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\maxim\\.nuget\\packages\\anglesharp\\0.14.0\\anglesharp.0.14.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\nito.asyncex.context\\5.1.0\\nito.asyncex.context.5.1.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\nito.asyncex.tasks\\5.1.0\\nito.asyncex.tasks.5.1.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\nito.disposables\\2.2.0\\nito.disposables.2.2.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\system.collections.immutable\\1.4.0\\system.collections.immutable.1.4.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\system.text.encoding.codepages\\4.5.0\\system.text.encoding.codepages.4.5.0.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\maxim\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}
