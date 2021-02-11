@@ -1,6 +1,7 @@
 ﻿using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Text;
+using System;
 using System.Threading.Tasks;
 
 namespace PCPW
@@ -22,20 +23,17 @@ namespace PCPW
                 string check = contentPrice[i].Text();
                 string result = null;
 
-                for (int z = 0; !check[1].IsDigit() && z < check.Length; z++)
+                for (int z = 0; z < check.Length ;z++)
                 {
-                    if (z != 1)
+                    if (check[z].IsDigit())
                     {
                         result += check[z];
                     }
                 }
-                if (check[1].IsDigit())
-                {
-                    result = check;
-                }
-
+                Console.WriteLine($"Added: {contentName[i].Text()}  {result}");
+                
                 data.Price.Add(int.Parse(result));
-                data.Name.Add(contentName[i].Text());
+                data.Name.Add(Convert.ToString(contentName[i].Text()));
 
             }
             return data;
