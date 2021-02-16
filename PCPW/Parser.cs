@@ -11,7 +11,6 @@ namespace PCPW
         public async Task<Data> ParserAsync(string address, string Path)
         {
             Data data = new Data();
-
             var config = Configuration.Default.WithDefaultLoader();
 
             var document = await BrowsingContext.New(config).OpenAsync(address);
@@ -30,13 +29,14 @@ namespace PCPW
                         result += check[z];
                     }
                 }
+
                 Console.WriteLine($"Added: {contentName[i].Text()}  {result}");
 
                 data.Price.Add(int.Parse(result));
                 data.Name.Add(Convert.ToString(contentName[i].Text()));
-                
 
             }
+
             data.Path = Path;
             data.Url = address;
             return data;

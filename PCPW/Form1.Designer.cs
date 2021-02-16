@@ -1,5 +1,4 @@
-﻿
-namespace PCPW
+﻿namespace PCPW
 {
     partial class Form1
     {
@@ -41,9 +40,9 @@ namespace PCPW
             // 
             // btnPull
             // 
-            this.btnPull.Location = new System.Drawing.Point(172, 77);
+            this.btnPull.Location = new System.Drawing.Point(160, 77);
             this.btnPull.Name = "btnPull";
-            this.btnPull.Size = new System.Drawing.Size(94, 29);
+            this.btnPull.Size = new System.Drawing.Size(130, 29);
             this.btnPull.TabIndex = 0;
             this.btnPull.Text = "Pull Data";
             this.btnPull.UseVisualStyleBackColor = true;
@@ -63,14 +62,14 @@ namespace PCPW
             // 
             this.TxtBoxUrl.Location = new System.Drawing.Point(12, 44);
             this.TxtBoxUrl.Name = "TxtBoxUrl";
-            this.TxtBoxUrl.Size = new System.Drawing.Size(254, 27);
+            this.TxtBoxUrl.Size = new System.Drawing.Size(278, 27);
             this.TxtBoxUrl.TabIndex = 3;
             // 
             // btnPath
             // 
             this.btnPath.Location = new System.Drawing.Point(12, 77);
             this.btnPath.Name = "btnPath";
-            this.btnPath.Size = new System.Drawing.Size(154, 29);
+            this.btnPath.Size = new System.Drawing.Size(130, 29);
             this.btnPath.TabIndex = 4;
             this.btnPath.Text = "Choose Folder";
             this.btnPath.UseVisualStyleBackColor = true;
@@ -78,9 +77,9 @@ namespace PCPW
             // 
             // btnFileOpen
             // 
-            this.btnFileOpen.Location = new System.Drawing.Point(172, 112);
+            this.btnFileOpen.Location = new System.Drawing.Point(160, 112);
             this.btnFileOpen.Name = "btnFileOpen";
-            this.btnFileOpen.Size = new System.Drawing.Size(94, 29);
+            this.btnFileOpen.Size = new System.Drawing.Size(130, 29);
             this.btnFileOpen.TabIndex = 5;
             this.btnFileOpen.Text = "Open File";
             this.btnFileOpen.UseVisualStyleBackColor = true;
@@ -90,7 +89,7 @@ namespace PCPW
             // 
             this.btnBoot.Location = new System.Drawing.Point(12, 112);
             this.btnBoot.Name = "btnBoot";
-            this.btnBoot.Size = new System.Drawing.Size(154, 29);
+            this.btnBoot.Size = new System.Drawing.Size(130, 29);
             this.btnBoot.TabIndex = 6;
             this.btnBoot.Text = "Boot with Windows";
             this.btnBoot.UseVisualStyleBackColor = true;
@@ -100,7 +99,7 @@ namespace PCPW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 153);
+            this.ClientSize = new System.Drawing.Size(302, 153);
             this.Controls.Add(this.btnBoot);
             this.Controls.Add(this.btnFileOpen);
             this.Controls.Add(this.btnPath);
@@ -108,8 +107,8 @@ namespace PCPW
             this.Controls.Add(this.status);
             this.Controls.Add(this.btnPull);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(300, 200);
-            this.MinimumSize = new System.Drawing.Size(300, 200);
+            this.MaximumSize = new System.Drawing.Size(320, 200);
+            this.MinimumSize = new System.Drawing.Size(320, 200);
             this.Name = "Form1";
             this.Text = "PCPW";
             this.Load += new System.EventHandler(this.Form1_Load);
