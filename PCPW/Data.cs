@@ -6,5 +6,7 @@ namespace PCPW
     {
         public List<int> Price = new List<int>();
         public List<string> Name = new List<string>();
+        public string Url;
+        public string Path;
     }
 }

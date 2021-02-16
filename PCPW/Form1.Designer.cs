@@ -29,70 +29,103 @@ namespace PCPW
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSave = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.btnPull = new System.Windows.Forms.Button();
             this.status = new System.Windows.Forms.Label();
             this.TxtBoxUrl = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPath = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnFileOpen = new System.Windows.Forms.Button();
+            this.btnBoot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnSave
+            // btnPull
             // 
-            this.btnSave.Location = new System.Drawing.Point(172, 45);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 29);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnPull.Location = new System.Drawing.Point(172, 77);
+            this.btnPull.Name = "btnPull";
+            this.btnPull.Size = new System.Drawing.Size(94, 29);
+            this.btnPull.TabIndex = 0;
+            this.btnPull.Text = "Pull Data";
+            this.btnPull.UseVisualStyleBackColor = true;
+            this.btnPull.Click += new System.EventHandler(this.btnPull_Click);
             // 
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(172, 15);
+            this.status.Location = new System.Drawing.Point(12, 9);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(47, 20);
+            this.status.Size = new System.Drawing.Size(59, 20);
             this.status.TabIndex = 1;
-            this.status.Text = "status";
+            this.status.Text = "STATUS";
+            this.status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TxtBoxUrl
             // 
-            this.TxtBoxUrl.Location = new System.Drawing.Point(12, 12);
+            this.TxtBoxUrl.Location = new System.Drawing.Point(12, 44);
             this.TxtBoxUrl.Name = "TxtBoxUrl";
-            this.TxtBoxUrl.Size = new System.Drawing.Size(154, 27);
+            this.TxtBoxUrl.Size = new System.Drawing.Size(254, 27);
             this.TxtBoxUrl.TabIndex = 3;
             // 
-            // button1
+            // btnPath
             // 
-            this.button1.Location = new System.Drawing.Point(12, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 29);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Choose Folder";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPath.Location = new System.Drawing.Point(12, 77);
+            this.btnPath.Name = "btnPath";
+            this.btnPath.Size = new System.Drawing.Size(154, 29);
+            this.btnPath.TabIndex = 4;
+            this.btnPath.Text = "Choose Folder";
+            this.btnPath.UseVisualStyleBackColor = true;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
+            // 
+            // btnFileOpen
+            // 
+            this.btnFileOpen.Location = new System.Drawing.Point(172, 112);
+            this.btnFileOpen.Name = "btnFileOpen";
+            this.btnFileOpen.Size = new System.Drawing.Size(94, 29);
+            this.btnFileOpen.TabIndex = 5;
+            this.btnFileOpen.Text = "Open File";
+            this.btnFileOpen.UseVisualStyleBackColor = true;
+            this.btnFileOpen.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // btnBoot
+            // 
+            this.btnBoot.Location = new System.Drawing.Point(12, 112);
+            this.btnBoot.Name = "btnBoot";
+            this.btnBoot.Size = new System.Drawing.Size(154, 29);
+            this.btnBoot.TabIndex = 6;
+            this.btnBoot.Text = "Boot with Windows";
+            this.btnBoot.UseVisualStyleBackColor = true;
+            this.btnBoot.Click += new System.EventHandler(this.btnBoot_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 103);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(282, 153);
+            this.Controls.Add(this.btnBoot);
+            this.Controls.Add(this.btnFileOpen);
+            this.Controls.Add(this.btnPath);
             this.Controls.Add(this.TxtBoxUrl);
             this.Controls.Add(this.status);
-            this.Controls.Add(this.btnSave);
-            this.MaximumSize = new System.Drawing.Size(300, 150);
-            this.MinimumSize = new System.Drawing.Size(300, 150);
+            this.Controls.Add(this.btnPull);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(300, 200);
+            this.MinimumSize = new System.Drawing.Size(300, 200);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "PCPW";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnPull;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.TextBox TxtBoxUrl;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPath;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button btnFileOpen;
+        private System.Windows.Forms.Button btnBoot;
     }
 }
 

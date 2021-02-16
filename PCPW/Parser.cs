@@ -8,7 +8,7 @@ namespace PCPW
 {
     class Parser
     {
-        public async Task<Data> ParserAsync(string address)
+        public async Task<Data> ParserAsync(string address, string Path)
         {
             Data data = new Data();
 
@@ -34,8 +34,11 @@ namespace PCPW
 
                 data.Price.Add(int.Parse(result));
                 data.Name.Add(Convert.ToString(contentName[i].Text()));
+                
 
             }
+            data.Path = Path;
+            data.Url = address;
             return data;
         }
     }
