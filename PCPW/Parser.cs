@@ -8,12 +8,12 @@ namespace PCPW
 {
     class Parser
     {
-        public async Task<Data> ParserAsync()
+        public async Task<Data> ParserAsync(string address)
         {
             Data data = new Data();
 
             var config = Configuration.Default.WithDefaultLoader();
-            var address = "https://ek.ua/ul_/fswtud0jhz1/zakladki/";
+
             var document = await BrowsingContext.New(config).OpenAsync(address);
             var contentPrice = document.QuerySelectorAll("td.model-hot-prices-td [id^=price], [class$=ib] span:first-child");
             var contentName = document.QuerySelectorAll("td.model-short-info table span.u");
@@ -23,7 +23,7 @@ namespace PCPW
                 string check = contentPrice[i].Text();
                 string result = null;
 
-                for (int z = 0; z < check.Length ;z++)
+                for (int z = 0; z < check.Length; z++)
                 {
                     if (check[z].IsDigit())
                     {
@@ -31,7 +31,7 @@ namespace PCPW
                     }
                 }
                 Console.WriteLine($"Added: {contentName[i].Text()}  {result}");
-                
+
                 data.Price.Add(int.Parse(result));
                 data.Name.Add(Convert.ToString(contentName[i].Text()));
 
