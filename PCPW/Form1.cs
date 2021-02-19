@@ -17,7 +17,7 @@ namespace PCPW
         public Form1()
         {
             InitializeComponent();
-            if (DateTime.Now.Ticks - data.Ticks < 120) this.Hide();
+            if (DateTime.Now.Ticks - data.Ticks < 360) this.Hide();
 
             if (File.Exists(cfgPath))
             {
@@ -86,7 +86,7 @@ namespace PCPW
             {
                 status.Text = "ALREDY DONE!";
             }
-            if (DateTime.Now.Ticks - data.Ticks < 120) this.Close();
+            if (DateTime.Now.Ticks - data.Ticks < 360) this.Close();
 
         }
         private void btnPath_Click(object sender, EventArgs e)
@@ -103,11 +103,13 @@ namespace PCPW
             {
                 reg.DeleteValue("PCPW");
                 btnBoot.Text = "Boot with Windows";
+                bootState = false;
             }
             else
             {
                 reg.SetValue("PCPW", Application.ExecutablePath);
                 btnBoot.Text = "Disable Boot";
+                bootState = true;
             }
         }
         private void btnFileOpen_Click(object sender, EventArgs e)
