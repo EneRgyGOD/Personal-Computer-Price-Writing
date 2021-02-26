@@ -12,6 +12,8 @@ namespace PCPW
         }
         public void Write(Data data)
         {
+            data.Name.Clear();
+            data.Price.Clear();
             if (File.Exists(data.CfgPath)) File.WriteAllText(data.CfgPath, "");
             File.WriteAllText(data.CfgPath, JsonConvert.SerializeObject(data));
         }

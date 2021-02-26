@@ -64,7 +64,6 @@
             this.TxtBoxUrl.Name = "TxtBoxUrl";
             this.TxtBoxUrl.Size = new System.Drawing.Size(296, 27);
             this.TxtBoxUrl.TabIndex = 3;
-            this.TxtBoxUrl.MouseLeave += new System.EventHandler(this.TxtBoxUrl_MouseLeave);   
             // 
             // btnPath
             // 

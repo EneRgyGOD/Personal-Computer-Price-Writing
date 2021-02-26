@@ -13,15 +13,11 @@ namespace PCPW
         RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         bool bootState;
         const string configPath = @"C:\Users\Public\Documents\config.json";
+
         public Form1()
         {
             InitializeComponent();
             dataIn.CfgPath = configPath;
-            if (File.Exists(dataIn.CfgPath))
-            {
-                dataIn = config.Read(dataIn);
-                status.Text = "Config Loaded!";
-            }
         }
 
         async private void Pull()
@@ -65,9 +61,8 @@ namespace PCPW
             }
         }
 
-        async public void btnPull_Click(object sender, EventArgs e)
+        public void btnPull_Click(object sender, EventArgs e)
         {
-            //fix this shit
             if (cfgCheck()) Pull();
         }
 
@@ -87,7 +82,7 @@ namespace PCPW
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //if(cfgCheck())  Pull().GetAwaiter().GetResult();
+            if (cfgCheck()) Pull();
             if (reg.GetValue("PCPW") != null)
             {
                 checkBoxBoot.Checked = true;
@@ -98,8 +93,8 @@ namespace PCPW
 
         private bool cfgCheck()
         {
-            dataIn.Url = TxtBoxUrl.Text;
-            if (File.Exists(dataIn.CfgPath) && dataIn.Url == "")
+            if (dataIn.Url != TxtBoxUrl.Text && TxtBoxUrl.Text != "") config.Write(dataIn);
+            if (File.Exists(dataIn.CfgPath))
             {
                 dataIn = config.Read(dataIn);
                 status.Text = "Loading cfg";
@@ -135,7 +130,7 @@ namespace PCPW
             }
             else
             {
-                reg.SetValue("PCPW", Application.ExecutablePath + " -silent");
+                reg.SetValue("PCPW", Application.ExecutablePath + " --silent");
                 checkBoxBoot.Checked = true;
                 bootState = true;
             }
@@ -144,11 +139,6 @@ namespace PCPW
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             BootOnStartup();
-        }
-
-        private void TxtBoxUrl_MouseLeave(object sender, EventArgs e)
-        {
-            cfgCheck();
         }
     }
 }
