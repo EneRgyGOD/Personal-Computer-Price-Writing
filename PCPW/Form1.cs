@@ -11,48 +11,25 @@ namespace PCPW
         Data dataIn = new Data();
         ConfigIO config = new ConfigIO();
         RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        DateTime data = DateTime.Now.AddMilliseconds(-Environment.TickCount);
         bool bootState;
-        string cfgPath = @"C:\Users\Public\Documents\config.txt";
+        const string configPath = @"C:\Users\Public\Documents\config.json";
         public Form1()
         {
             InitializeComponent();
-            if (DateTime.Now.Ticks - data.Ticks < 360) this.Hide();
-
-            if (File.Exists(cfgPath))
+            dataIn.CfgPath = configPath;
+            if (File.Exists(dataIn.CfgPath))
             {
-                dataIn = config.Read(cfgPath);
+                dataIn = config.Read(dataIn);
                 status.Text = "Config Loaded!";
             }
         }
-        async public void btnPull_Click(object sender, EventArgs e)
-        {
-            dataIn.Url = TxtBoxUrl.Text;
-            if (File.Exists(cfgPath))
-            {
-                dataIn = config.Read(cfgPath);
-                status.Text = "Loading cfg";
-                TxtBoxUrl.Text = dataIn.Url;
-            }
-            else if (dataIn.Url == "")
-            {
-                status.Text = "Enter Url";
-                return;
-            }
-            else if (dataIn.Path == null)
-            {
-                status.Text = "Choose folder for csv file";
-                return;
-            }
-            else
-            {
-                config.Write(cfgPath, dataIn.Url, dataIn.Path);
-            }
 
+        async private void Pull()
+        {
             status.Text = "loading page";
 
             Parser Parser = new Parser();
-            dataIn = await Parser.ParserAsync(dataIn.Url, dataIn.Path);
+            dataIn = await Parser.ParserAsync(dataIn);
 
             status.Text = "OK";
             status.Text = "Checking File";
@@ -86,9 +63,14 @@ namespace PCPW
             {
                 status.Text = "ALREDY DONE!";
             }
-            if (DateTime.Now.Ticks - data.Ticks < 360) this.Close();
-
         }
+
+        async public void btnPull_Click(object sender, EventArgs e)
+        {
+            //fix this shit
+            if (cfgCheck()) Pull();
+        }
+
         private void btnPath_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
@@ -97,21 +79,6 @@ namespace PCPW
             }
         }
 
-        private void btnBoot_Click(object sender, EventArgs e)
-        {
-            if (bootState)
-            {
-                reg.DeleteValue("PCPW");
-                btnBoot.Text = "Boot with Windows";
-                bootState = false;
-            }
-            else
-            {
-                reg.SetValue("PCPW", Application.ExecutablePath);
-                btnBoot.Text = "Disable Boot";
-                bootState = true;
-            }
-        }
         private void btnFileOpen_Click(object sender, EventArgs e)
         {
             if (File.Exists(dataIn.Path)) System.Diagnostics.Process.Start("notepad.exe", dataIn.Path);
@@ -120,13 +87,68 @@ namespace PCPW
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            btnPull.PerformClick();
+            //if(cfgCheck())  Pull().GetAwaiter().GetResult();
             if (reg.GetValue("PCPW") != null)
             {
-                btnBoot.Text = "Disable Boot";
+                checkBoxBoot.Checked = true;
                 bootState = true;
             }
             else bootState = false;
+        }
+
+        private bool cfgCheck()
+        {
+            dataIn.Url = TxtBoxUrl.Text;
+            if (File.Exists(dataIn.CfgPath) && dataIn.Url == "")
+            {
+                dataIn = config.Read(dataIn);
+                status.Text = "Loading cfg";
+                TxtBoxUrl.Text = dataIn.Url;
+                status.Text = "cfg loaded";
+                return true;
+            }
+            else if (dataIn.Url == "")
+            {
+                status.Text = "Enter Url";
+                return false;
+            }
+            else if (dataIn.Path == null)
+            {
+                status.Text = "Choose folder for csv file";
+                return false;
+            }
+            else
+            {
+                config.Write(dataIn);
+                status.Text = "cfg saved";
+                return true;
+            }
+        }
+
+        private void BootOnStartup()
+        {
+            if (bootState)
+            {
+                reg.DeleteValue("PCPW");
+                checkBoxBoot.Checked = false;
+                bootState = false;
+            }
+            else
+            {
+                reg.SetValue("PCPW", Application.ExecutablePath + " -silent");
+                checkBoxBoot.Checked = true;
+                bootState = true;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            BootOnStartup();
+        }
+
+        private void TxtBoxUrl_MouseLeave(object sender, EventArgs e)
+        {
+            cfgCheck();
         }
     }
 }

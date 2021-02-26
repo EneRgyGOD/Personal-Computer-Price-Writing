@@ -8,5 +8,6 @@ namespace PCPW
         public List<string> Name = new List<string>();
         public string Url;
         public string Path;
+        public string CfgPath;
     }
 }

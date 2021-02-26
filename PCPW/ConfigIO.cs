@@ -1,24 +1,19 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
+using System.IO;
 
 namespace PCPW
 {
     class ConfigIO
     {
-        Data data = new Data();
-        public Data Read(string cfgPath)
+        public Data Read(Data data)
         {
-            string[] input;
-            input = File.ReadAllLines(cfgPath);
-
-            data.Url = input[0];
-            data.Path = input[1];
-
+            data = JsonConvert.DeserializeObject<Data>(File.ReadAllText(data.CfgPath));
             return data;
         }
-        public void Write(string cfgPath, string Url, string path)
+        public void Write(Data data)
         {
-            if (File.Exists(cfgPath)) File.Delete(cfgPath);
-            File.WriteAllText(cfgPath, Url + "\n" + path);
+            if (File.Exists(data.CfgPath)) File.WriteAllText(data.CfgPath, "");
+            File.WriteAllText(data.CfgPath, JsonConvert.SerializeObject(data));
         }
     }
 }

@@ -8,12 +8,11 @@ namespace PCPW
 {
     class Parser
     {
-        public async Task<Data> ParserAsync(string address, string Path)
+        public async Task<Data> ParserAsync(Data data)
         {
-            Data data = new Data();
             var config = Configuration.Default.WithDefaultLoader();
 
-            var document = await BrowsingContext.New(config).OpenAsync(address);
+            var document = await BrowsingContext.New(config).OpenAsync(Convert.ToString(data.Url));
             var contentPrice = document.QuerySelectorAll("td.model-hot-prices-td [id^=price], [class$=ib] span:first-child");
             var contentName = document.QuerySelectorAll("td.model-short-info table span.u");
 
@@ -29,16 +28,11 @@ namespace PCPW
                         result += check[z];
                     }
                 }
-
                 Console.WriteLine($"Added: {contentName[i].Text()}  {result}");
 
                 data.Price.Add(int.Parse(result));
                 data.Name.Add(Convert.ToString(contentName[i].Text()));
-
             }
-
-            data.Path = Path;
-            data.Url = address;
             return data;
         }
     }

@@ -35,12 +35,12 @@
             this.btnPath = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnFileOpen = new System.Windows.Forms.Button();
-            this.btnBoot = new System.Windows.Forms.Button();
+            this.checkBoxBoot = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnPull
             // 
-            this.btnPull.Location = new System.Drawing.Point(160, 77);
+            this.btnPull.Location = new System.Drawing.Point(170, 77);
             this.btnPull.Name = "btnPull";
             this.btnPull.Size = new System.Drawing.Size(130, 29);
             this.btnPull.TabIndex = 0;
@@ -60,16 +60,17 @@
             // 
             // TxtBoxUrl
             // 
-            this.TxtBoxUrl.Location = new System.Drawing.Point(12, 44);
+            this.TxtBoxUrl.Location = new System.Drawing.Point(4, 44);
             this.TxtBoxUrl.Name = "TxtBoxUrl";
-            this.TxtBoxUrl.Size = new System.Drawing.Size(278, 27);
+            this.TxtBoxUrl.Size = new System.Drawing.Size(296, 27);
             this.TxtBoxUrl.TabIndex = 3;
+            this.TxtBoxUrl.MouseLeave += new System.EventHandler(this.TxtBoxUrl_MouseLeave);   
             // 
             // btnPath
             // 
-            this.btnPath.Location = new System.Drawing.Point(12, 77);
+            this.btnPath.Location = new System.Drawing.Point(4, 77);
             this.btnPath.Name = "btnPath";
-            this.btnPath.Size = new System.Drawing.Size(130, 29);
+            this.btnPath.Size = new System.Drawing.Size(150, 29);
             this.btnPath.TabIndex = 4;
             this.btnPath.Text = "Choose Folder";
             this.btnPath.UseVisualStyleBackColor = true;
@@ -77,7 +78,7 @@
             // 
             // btnFileOpen
             // 
-            this.btnFileOpen.Location = new System.Drawing.Point(160, 112);
+            this.btnFileOpen.Location = new System.Drawing.Point(170, 114);
             this.btnFileOpen.Name = "btnFileOpen";
             this.btnFileOpen.Size = new System.Drawing.Size(130, 29);
             this.btnFileOpen.TabIndex = 5;
@@ -85,30 +86,31 @@
             this.btnFileOpen.UseVisualStyleBackColor = true;
             this.btnFileOpen.Click += new System.EventHandler(this.btnFileOpen_Click);
             // 
-            // btnBoot
+            // checkBoxBoot
             // 
-            this.btnBoot.Location = new System.Drawing.Point(12, 112);
-            this.btnBoot.Name = "btnBoot";
-            this.btnBoot.Size = new System.Drawing.Size(130, 29);
-            this.btnBoot.TabIndex = 6;
-            this.btnBoot.Text = "Boot with Windows";
-            this.btnBoot.UseVisualStyleBackColor = true;
-            this.btnBoot.Click += new System.EventHandler(this.btnBoot_Click);
+            this.checkBoxBoot.AutoSize = true;
+            this.checkBoxBoot.Location = new System.Drawing.Point(4, 119);
+            this.checkBoxBoot.Name = "checkBoxBoot";
+            this.checkBoxBoot.Size = new System.Drawing.Size(160, 24);
+            this.checkBoxBoot.TabIndex = 6;
+            this.checkBoxBoot.Text = "Run with Windows?";
+            this.checkBoxBoot.UseVisualStyleBackColor = true;
+            this.checkBoxBoot.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 153);
-            this.Controls.Add(this.btnBoot);
+            this.ClientSize = new System.Drawing.Size(312, 173);
+            this.Controls.Add(this.checkBoxBoot);
             this.Controls.Add(this.btnFileOpen);
             this.Controls.Add(this.btnPath);
             this.Controls.Add(this.TxtBoxUrl);
             this.Controls.Add(this.status);
             this.Controls.Add(this.btnPull);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(320, 200);
-            this.MinimumSize = new System.Drawing.Size(320, 200);
+            this.MaximumSize = new System.Drawing.Size(330, 220);
+            this.MinimumSize = new System.Drawing.Size(330, 220);
             this.Name = "Form1";
             this.Text = "PCPW";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -124,7 +126,7 @@
         private System.Windows.Forms.Button btnPath;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btnFileOpen;
-        private System.Windows.Forms.Button btnBoot;
+        private System.Windows.Forms.CheckBox checkBoxBoot;
     }
 }
 
