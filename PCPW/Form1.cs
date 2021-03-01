@@ -34,34 +34,45 @@ namespace PCPW
             status.Text = "OK";
             status.Text = "Checking File";
 
-            string input = File.ReadAllText(dataIn.Path);
-            DateTime date = DateTime.Now;
-            var csv = new StringBuilder();
 
-            if (!input.Contains(date.Day + "." + date.Month + "." + date.Year + ";"))
+            string input = "";
+            try
             {
-                status.Text = "Writing data";
-                double x = 0;
-                string bigstring = "";
+                input = File.ReadAllText(dataIn.Path);
 
-                for (int i = 0; i < dataIn.Price.Count; i++)
+                DateTime date = DateTime.Now;
+                var csv = new StringBuilder();
+
+                if (!input.Contains(date.Day + "." + date.Month + "." + date.Year + ";"))
                 {
-                    bigstring += $"{dataIn.Price[i]};";
-                    x += dataIn.Price[i];
+                    status.Text = "Writing data";
+                    double x = 0;
+                    string bigstring = "";
+
+                    for (int i = 0; i < dataIn.Price.Count; i++)
+                    {
+                        bigstring += $"{dataIn.Price[i]};";
+                        x += dataIn.Price[i];
+                    }
+
+                    bigstring += $"{x};";
+                    var newLine = string.Format(date.Day + "." + date.Month + "." + date.Year + ";" + bigstring);
+                    csv.Append(newLine);
+
+                    csv.AppendLine();
+                    File.AppendAllText(dataIn.Path, csv.ToString());
+
+                    status.Text = "SUCCESS";
                 }
-
-                bigstring += $"{x};";
-                var newLine = string.Format(date.Day + "." + date.Month + "." + date.Year + ";" + bigstring);
-                csv.Append(newLine);
-
-                csv.AppendLine();
-                File.AppendAllText(dataIn.Path, csv.ToString());
-
-                status.Text = "SUCCESS";
+                else
+                {
+                    status.Text = "ALREDY DONE!";
+                }
             }
-            else
-            {
-                status.Text = "ALREDY DONE!";
+            catch 
+            { 
+                MessageBox.Show("Close CSV file", "Can`t work with file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                status.Text = "Try again";
             }
             if (silent) this.Close();
         }
