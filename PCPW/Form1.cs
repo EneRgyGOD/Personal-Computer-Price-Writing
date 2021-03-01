@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -11,13 +12,16 @@ namespace PCPW
         Data dataIn = new Data();
         ConfigIO config = new ConfigIO();
         RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        bool bootState;
+        bool bootState, silent;
         const string configPath = @"C:\Users\Public\Documents\config.json";
+        string[] arguments = Environment.GetCommandLineArgs();
 
         public Form1()
         {
             InitializeComponent();
             dataIn.CfgPath = configPath;
+            if (arguments.Length > 1 && arguments[1] == "--silent") silent = true;
+            if (silent) _Hide();
         }
 
         async private void Pull()
@@ -59,6 +63,7 @@ namespace PCPW
             {
                 status.Text = "ALREDY DONE!";
             }
+            if (silent) this.Close();
         }
 
         public void btnPull_Click(object sender, EventArgs e)
@@ -139,6 +144,13 @@ namespace PCPW
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             BootOnStartup();
+        }
+
+        private void _Hide() 
+        {
+            this.Visible = false;
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
         }
     }
 }
